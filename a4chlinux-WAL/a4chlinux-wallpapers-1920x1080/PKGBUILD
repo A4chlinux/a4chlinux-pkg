@@ -1,0 +1,24 @@
+# Maintainer: Your Name a4chlinux
+pkgname=juanmiguel-wallpapers.git
+_pkgname=juanmiguel-wallpapers
+pkgver=1
+pkgrel=1
+pkgdesc="a4chlinux wallpapers"
+arch=('x86_64')
+url=""
+license=('GPL3')
+groups=()
+depends=('git')
+source=(${pkgname}::"git+https://github.com/A4chlinux/${_pkgname}")
+noextract=()
+md5sums=(SKIP) #autofill using updpkgsums
+
+
+package() {
+	cd "${srcdir}/${pkgname}"
+	install -d "${pkgdir}/usr/share/backgrounds/${_pkgname}"
+	install -m644 ${srcdir}/${pkgname}/*.jpg "${pkgdir}/usr/share/backgrounds/${_pkgname}"
+	#install -m644 ${srcdir}/${pkgname}/*.png "${pkgdir}/usr/share/backgrounds/${_pkgname}"
+	install -d "${pkgdir}/usr/share/licenses/${_pkgname}"
+	install -m644 ${srcdir}/${pkgname}/LICENSE "${pkgdir}/usr/share/licenses/${_pkgname}"
+}
